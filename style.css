@@ -1,0 +1,319 @@
+/* --- Theme Variables --- */
+:root {
+    --primary-pink: #ff69b4;
+    --deep-pink: #d4145a;
+    --glow-pink: #ff1493;
+    --tulip-purple: #9b59b6;
+    --tulip-dark-purple: #8e44ad;
+    --stem-green: #2ecc71;
+    --bg-gradient: linear-gradient(135deg, #ffcce6 0%, #ff99cc 50%, #cc66ff 100%);
+}
+
+/* --- General Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background: var(--bg-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+}
+
+/* --- Background Falling Hearts (Glowing) --- */
+.heart-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.falling-heart {
+    position: absolute;
+    top: -10vh;
+    text-shadow: 0 0 10px rgba(255, 20, 147, 0.8), 0 0 20px rgba(255, 105, 180, 0.6);
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg) scale(0.8); opacity: 0; }
+}
+
+/* --- Main Glassmorphism Card --- */
+.glass-container {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(255, 105, 180, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 3rem 4rem;
+    text-align: center;
+    z-index: 10;
+    transition: all 0.5s ease;
+}
+
+.title {
+    font-family: 'Pacifico', cursive;
+    color: white;
+    text-shadow: 2px 2px 4px var(--deep-pink), 0 0 20px var(--primary-pink);
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+}
+
+.cute-gif {
+    width: 180px;
+    height: auto;
+    margin-bottom: 30px;
+    filter: drop-shadow(0 0 10px var(--primary-pink));
+}
+
+/* --- Buttons --- */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: relative;
+}
+
+.btn {
+    padding: 15px 50px;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.yes-btn {
+    background: linear-gradient(45deg, var(--deep-pink), var(--primary-pink));
+    color: white;
+    box-shadow: 0 5px 25px rgba(212, 20, 90, 0.6);
+}
+
+.yes-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 35px rgba(212, 20, 90, 0.8);
+}
+
+.no-wrapper {
+    position: relative;
+    width: auto; height: auto;
+}
+
+.no-btn {
+    background: white;
+    color: var(--deep-pink);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* --- REDESIGNED Tulip Animation Styles --- */
+.tulip-wrapper {
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 20;
+    position: absolute;
+    bottom: 10%;
+    width: 100%;
+    height: auto;
+}
+
+/* NEW: Garden Container for multiple tulips */
+.garden {
+    display: flex;
+    align-items: flex-end; /* Align bottoms */
+    justify-content: center;
+    gap: 20px; /* Space between flowers */
+    padding-bottom: 20px;
+}
+
+.tulip-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* 1. The Stem */
+.stem {
+    width: 10px;
+    background: linear-gradient(to right, var(--stem-green), #27ae60);
+    height: 0;
+    border-radius: 10px;
+    position: relative;
+    animation: growStem 2s ease-out forwards;
+}
+
+@keyframes growStem {
+    to { height: 250px; }
+}
+
+/* 2. The Leaves */
+.leaf {
+    position: absolute;
+    background: linear-gradient(45deg, var(--stem-green), #27ae60);
+    width: 40px;
+    height: 70px;
+    border-radius: 0% 100% 10% 100%;
+    opacity: 0;
+    transform-origin: bottom center;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+
+.leaf-left {
+    bottom: 30px; left: -40px;
+    transform: rotate(-30deg) scale(0);
+    animation: showLeftLeaf 1s ease-out 1.5s forwards;
+}
+.leaf-right {
+    bottom: 60px; right: -40px;
+    transform: rotate(30deg) scaleX(-1) scale(0);
+    animation: showRightLeaf 1s ease-out 1.8s forwards;
+}
+
+@keyframes showLeftLeaf { to { opacity: 1; transform: rotate(-30deg) scale(1); }}
+@keyframes showRightLeaf { to { opacity: 1; transform: rotate(30deg) scaleX(-1) scale(1); }}
+
+/* 3. The Flower Bud */
+.flower-bud {
+    position: relative;
+    width: 60px; height: 80px; /* Adjusted size slightly for the bouquet */
+    opacity: 0;
+    transform: scale(0) translateY(50px);
+    animation: popFlower 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2.2s forwards;
+    z-index: 2;
+}
+
+@keyframes popFlower {
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.bud-main {
+    width: 100%; height: 100%;
+    background: linear-gradient(to bottom right, var(--tulip-purple), var(--tulip-dark-purple));
+    border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+    box-shadow: inset -5px -5px 20px rgba(0,0,0,0.2), 0 0 25px var(--tulip-purple);
+}
+
+.bud-left, .bud-right {
+    position: absolute;
+    top: 5px;
+    width: 50%; height: 80%;
+    background: linear-gradient(to bottom, #af7ac5, var(--tulip-purple));
+    border-radius: 50% 50% 20% 20%;
+    opacity: 0.9;
+}
+.bud-left { left: 5%; transform: rotate(-15deg); }
+.bud-right { right: 5%; transform: rotate(15deg); }
+
+/* --- Specific Styles for the 3 Tulips --- */
+
+/* Left Tulip (Small, slight delay) */
+.t-left {
+    transform: scale(0.8) rotate(-10deg); /* Tilt left */
+}
+.t-left .stem { animation-delay: 0.5s; }
+.t-left .leaf { animation-delay: 2s; }
+.t-left .flower-bud { animation-delay: 2.7s; }
+
+/* Right Tulip (Small, slight delay) */
+.t-right {
+    transform: scale(0.8) rotate(10deg); /* Tilt right */
+}
+.t-right .stem { animation-delay: 0.8s; }
+.t-right .leaf { animation-delay: 2.3s; }
+.t-right .flower-bud { animation-delay: 3s; }
+
+/* Center Tulip (Main, big, grows last for effect) */
+.t-center {
+    z-index: 10;
+    margin-bottom: 20px; /* Push it up slightly */
+}
+/* Default delays apply to center */
+
+/* Final Text */
+.final-text {
+    font-family: 'Pacifico', cursive;
+    color: white;
+    text-shadow: 0 0 15px var(--tulip-dark-purple);
+    font-size: 3rem;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInText 1.5s ease-out 4s forwards; /* Delayed to wait for all flowers */
+}
+
+@keyframes fadeInText {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- MERGED FEATURES --- */
+.hidden {
+    display: none !important;
+}
+
+#dateInput {
+    padding: 12px;
+    border-radius: 50px;
+    border: 2px solid var(--primary-pink);
+    outline: none;
+    text-align: center;
+    margin: 10px 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: var(--deep-pink);
+}
+
+.photo-frame {
+    width: 100%;
+    height: 220px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 15px 0;
+    border: 4px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+
+.kiss-container {
+    margin-top: 20px;
+    border-top: 1px dashed var(--primary-pink);
+    padding-top: 10px;
+    width: 100%;
+}
+.kiss-btn {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    background: white;
+    color: var(--deep-pink);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.letter-text {
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    width: 100%;
+}

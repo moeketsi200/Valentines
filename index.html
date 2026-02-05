@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-borderless/borderless.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_2c83c66a88.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="heart-container" id="heartContainer"></div>
+
+    <!-- Login Screen -->
+    <div class="glass-container" id="loginScreen">
+        <h1 class="title">Hey My Love 💕</h1>
+        <p style="color: white; margin-bottom: 15px; font-weight: 600;">Do you remember our special date?</p>
+        <input type="date" id="dateInput">
+        <br>
+        <button class="btn yes-btn" style="margin-top: 20px; font-size: 1rem; padding: 10px 30px;">Unlock 🔑</button>
+    </div>
+
+    <!-- Main Card -->
+    <div class="glass-container hidden" id="mainCard">
+        <h1 class="title">Katlego 💖</h1>
+        <p id="daysCounter" style="font-weight: 600; color: #d4145a; margin-bottom: 10px;"></p>
+        
+        <div class="photo-frame">
+            <img id="slideShow" src="rooi.jpg" alt="Us">
+        </div>
+
+        <h2 class="title" style="font-size: 2rem; margin: 10px 0;">Will you be my Valentine?</h2>
+        
+        <div class="buttons">
+            <div id="noBtnWrapper" class="no-wrapper">
+                 <button id="noBtn" class="btn no-btn">NO</button>
+            </div>
+            <button id="yesBtn" class="btn yes-btn">YES</button>
+        </div>
+
+        <div class="kiss-container">
+            <p style="font-size: 12px; margin: 5px; color: #d4145a;">💋 Kisses Collected: <span id="kissCount">0</span></p>
+            <button id="kissBtn" class="kiss-btn">Give Kiss 😘</button>
+            <p id="secretMessage" class="hidden" style="margin-top: 10px; color: #d4145a; font-weight: bold; font-size: 13px; display: none;">
+                💍 Secret Unlocked: I choose you. Always.
+            </p>
+        </div>
+    </div>
+
+    <!-- Letter Screen -->
+    <div class="glass-container hidden" id="letterScreen" style="display: none;">
+        <h1 class="title" style="font-size: 2.5rem;">My Love Letter 💌</h1>
+        <p class="letter-text">
+            <strong>Dearest Katlego,</strong><br><br>
+            I saw you on campus and I fell in love from day one. 
+            Meeting you in person became the best moment of my life — 
+            and till today, you still are 🥹❤️<br><br>
+            Thank you for choosing me.<br>
+            I promise to love you loudly and gently, always.<br><br>
+            <strong>Forever yours,</strong><br>
+            <span style="font-family: 'Pacifico', cursive; font-size: 1.5rem;">Rooi 💍</span>
+        </p>
+        <button class="btn yes-btn" style="font-size: 1rem; padding: 10px 30px; margin-top: 15px;">Replay 🔄</button>
+    </div>
+
+    <div class="tulip-wrapper" id="tulipContainer">
+        
+        <div class="garden">
+            
+            <div class="tulip-group t-left">
+                <div class="flower-bud">
+                    <div class="bud-main"></div>
+                    <div class="bud-left"></div>
+                    <div class="bud-right"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf-left"></div>
+                    <div class="leaf leaf-right"></div>
+                </div>
+            </div>
+
+            <div class="tulip-group t-center">
+                <div class="flower-bud">
+                    <div class="bud-main"></div>
+                    <div class="bud-left"></div>
+                    <div class="bud-right"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf-left"></div>
+                    <div class="leaf leaf-right"></div>
+                </div>
+            </div>
+
+            <div class="tulip-group t-right">
+                <div class="flower-bud">
+                    <div class="bud-main"></div>
+                    <div class="bud-left"></div>
+                    <div class="bud-right"></div>
+                </div>
+                <div class="stem">
+                    <div class="leaf leaf-left"></div>
+                    <div class="leaf leaf-right"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <h2 class="final-text">I Love You! 💜</h2>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js"></script>
+</body>
+</html>
